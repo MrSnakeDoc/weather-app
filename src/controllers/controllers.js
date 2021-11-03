@@ -21,13 +21,16 @@ const routes = {
           : null;
       }
     }
-    res.render("index", { table: table, urlIcon: config.iconUrl });
+    res.render("index", { table, urlIcon: config.iconUrl });
   },
   async getCity(city) {
     let api = `${config.api}${city}&appid=${config.wkey}&units=metric&lang=fr`;
-    return await axios.get(api).then((res) => {
-      return res.data;
-    });
+    try {
+      const result = await axios.get(api);
+      return result;
+    } catch (err) {
+      console.log(err.message);
+    }
   },
   async redirectCity(req, res) {
     res.redirect(`/city/${req.query.search}`);
@@ -36,8 +39,9 @@ const routes = {
     let city;
     try {
       city = await routes.getCity(decodeURI(req.params.city));
-    } catch (error) {
-      error.response.status === 404 ? (city = null) : (city = null);
+    } catch (err) {
+      console.log(err.message);
+      city = null;
     }
     city === null
       ? res.status(200).redirect("/")
