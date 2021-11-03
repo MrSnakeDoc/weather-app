@@ -27,7 +27,7 @@ const routes = {
     let api = `${config.api}${city}&appid=${config.wkey}&units=metric&lang=fr`;
     try {
       const result = await axios.get(api);
-      return result;
+      return result.data;
     } catch (err) {
       console.log(err.message);
     }
@@ -41,9 +41,8 @@ const routes = {
       city = await routes.getCity(decodeURI(req.params.city));
     } catch (err) {
       console.log(err.message);
-      city = null;
     }
-    city === null
+    !city
       ? res.status(200).redirect("/")
       : res.status(200).render("city", {
           city: city,
