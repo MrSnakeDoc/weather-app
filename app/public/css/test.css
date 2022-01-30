@@ -1,0 +1,28 @@
+body {
+  background-image: url("/images/nikola-majksner-hXNGeAFOgT4-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-position: cover;
+  margin: 0px;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000020;
+  display: flex;
+  flex-direction: column;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.content {
+  flex: 1;
+}
+img {
+  width: 3rem;
+  transform: rotate(180deg);
+  filter: invert(100%);
+}
