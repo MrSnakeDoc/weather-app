@@ -15,10 +15,7 @@ router
 	.get("/", controller.homePage)
 	.post("/", controller.displayCity)
 	.get("/contactus", (req, res) => {
-		res.render("contactus");
-	})
-	.get("/about", (req, res) => {
-		res.render("about");
+		res.redirect("https://github.com/MrSnakeDoc");
 	});
 
 module.exports = router;

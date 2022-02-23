@@ -59,6 +59,9 @@ const controller = {
 			const result = await axios.get(
 				`http://api.openweathermap.org/data/2.5/forecast?q=${param}&appid=${wkey}&units=metric&lang=fr`
 			);
+			if (result.data) {
+				throw new Error("no data found");
+			}
 			return result.data;
 		} catch (err) {
 			console.log(err.message);
